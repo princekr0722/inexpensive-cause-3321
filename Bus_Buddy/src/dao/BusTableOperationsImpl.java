@@ -16,9 +16,7 @@ public class BusTableOperationsImpl implements BusTableOperations{
 
 	@Override
 	public boolean addNewBus(Bus bus) throws SQLException {
-		Connection conn = null;
-		
-			conn = DBUtility.getConnection();
+		Connection conn = DBUtility.getConnection();
 			
 			String INSERT_QUERY = "INSERT INTO Buses (busName, busType, totalSeat, "
 					+ "departurePoint, arrivalPoint, departureTime, "
@@ -81,6 +79,46 @@ public class BusTableOperationsImpl implements BusTableOperations{
 			return list;
 //			System.out.println(CommanAmongAll.RED+"Something is wrong, please try again later"+CommanAmongAll.RESET);
 	}
+	
+	@Override
+	public List<Bus> searchBusByStartAndEndPoint(String start, String end) throws SQLException {
+		Connection conn = null;
+		List<Bus> list = new ArrayList<>();
+		
+			conn = DBUtility.getConnection();
+			
+			String SELECT_QUERY = "SELECT * FROM Buses WHERE departurePoint = ? && arrivalPoint = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(SELECT_QUERY);
+			
+			ps.setString(1, start);
+			ps.setString(2, end);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(CommanAmongAll.isResultSetEmpty(rs)) {
+				DBUtility.closeConnection(conn);
+				return null;
+			}
+			
+			while(rs.next()) {
+				Bus bus = new Bus();
+				bus.setBusID(rs.getInt("busID"));
+				bus.setBusName(rs.getString("busName"));
+				bus.setBusType(rs.getString("busType"));
+				bus.setTotalSeat(rs.getInt("totalSeat"));
+				bus.setDeparturePoint(rs.getString("departurePoint"));
+				bus.setArrivalPoint(rs.getString("arrivalPoint"));
+				bus.setDepartureTime(rs.getTime("departureTime").toLocalTime());
+				bus.setArrivalTime(rs.getTime("arrivalTime").toLocalTime());
+				bus.setTicketPrice(rs.getDouble("ticketPrice"));
+				
+				list.add(bus);
+			}
+			DBUtility.closeConnection(conn);
+			return list;
+	}
+	
 	@Override
 	public Bus getBusByID(int id) throws SQLException {
 		Connection conn = null;
@@ -235,7 +273,7 @@ public class BusTableOperationsImpl implements BusTableOperations{
 	    if(arriveTimeWidth>max)max = arriveTimeWidth;
 	    if(priceWidth>max)max = priceWidth;
 	    
-		System.out.println("=================="+CommanAmongAll.TEAL+"INDIVIDUAL BUS"+CommanAmongAll.RESET+"=================\n");
+		System.out.println("===================="+CommanAmongAll.TEAL+"BUS DETAILS"+CommanAmongAll.RESET+"==================\n");
 	    String formatString = "| %1$-" + max + "s | %2$-" + max + "s |\n";
 	    
 	    System.out.println(new String(new char[max * 2 + 7]).replace('\0', '-'));
@@ -251,5 +289,70 @@ public class BusTableOperationsImpl implements BusTableOperations{
 	    System.out.format(formatString, "ArrivalTime", bus.getArrivalTime());
 	    System.out.format(formatString, "TicketPrice", bus.getTicketPrice());
 	    System.out.println(new String(new char[max * 2 + 7]).replace('\0', '-'));
+	}
+	
+		@Override
+		public int printListOfBuses(List<Bus> list) {
+			
+		System.out.println("\n"+CommanAmongAll.TEAL+"All BUSES"+CommanAmongAll.RESET+":-");
+		if(list==null) {
+			System.out.println(CommanAmongAll.GRAY+"No bus is present to show :\\"+CommanAmongAll.RESET);
+			return 0;
+		}
+		
+		int idWidth = "Bus ID".length();
+		int nameWidth = "Bus Name".length();
+		int typeWidth = "Bus Type".length();
+		int seatWidth = "Total Seat".length();
+		int departWidth = "Departure Point".length();
+		int arriveWidth = "Arrival Point".length();
+		int departTimeWidth = "Departure Time".length();
+		int arriveTimeWidth = "Arrival Time".length();
+		int priceWidth = "Ticket Price".length();
+        
+//        try {
+        	
+        for(int i=0; i<list.size(); i++) {
+        	if((list.get(i).getBusID()+"").length()>idWidth) {
+        		idWidth = (list.get(i).getBusID()+"").length();
+        	}
+        	if(list.get(i).getBusName().length()>nameWidth) {
+        		nameWidth = list.get(i).getBusName().length();
+        	}
+        	if(list.get(i).getBusType().length()>typeWidth) {
+        		typeWidth = list.get(i).getBusType().length();
+        	}
+        	if((list.get(i).getTotalSeat()+"").length()>seatWidth) {
+        		seatWidth = (list.get(i).getTotalSeat()+"").length();
+        	}
+        	if(list.get(i).getDeparturePoint().length()>departWidth) {
+        		departWidth = (list.get(i).getDeparturePoint()+"").length();
+        	}
+        	if(list.get(i).getArrivalPoint().length()>arriveWidth) {
+        		arriveWidth = (list.get(i).getArrivalPoint()+"").length();
+        	}
+        	if((list.get(i).getDepartureTime()+"").length()>departTimeWidth) {
+        		departTimeWidth = (list.get(i).getDepartureTime()+"").length();
+        	}
+        	if((list.get(i).getArrivalTime()+"").length()>arriveTimeWidth) {
+        		arriveTimeWidth = (list.get(i).getArrivalTime()+"").length();
+        	}
+        }
+        // Print the header row
+        String formatString = "| %1$-" + idWidth + "s | %2$-" + nameWidth + "s | %3$-" + typeWidth + "s | %4$-" + seatWidth + "s | %5$-" + departWidth + "s | %6$-" + arriveWidth + "s | %7$-" + departTimeWidth + "s | %8$-" + arriveTimeWidth + "s | %9$-" + priceWidth + "s |\n";
+        String separator = new String(new char[idWidth + nameWidth + typeWidth + seatWidth + departWidth + arriveWidth + departTimeWidth + arriveTimeWidth + priceWidth + 28]).replace('\0', '-');
+        
+        System.out.println(separator);
+        System.out.format(formatString, "Bus ID", "Bus Name", "Bus Type", "Total Seat", "Departure Point", "Arrival Point", "Departure Time", "Arrival Time", "Ticket Price");
+
+        // Print the separator row
+        System.out.println(separator);
+
+        // Print each row of bus data
+        for (Bus bus : list) {
+            System.out.format(formatString, bus.getBusID(), bus.getBusName(), bus.getBusType(), bus.getTotalSeat(), bus.getDeparturePoint(), bus.getArrivalPoint(), bus.getDepartureTime(), bus.getArrivalTime(), bus.getTicketPrice());
+        }
+        System.out.println(separator+"\n");
+        return 1;
 	}
 }
