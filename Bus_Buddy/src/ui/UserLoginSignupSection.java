@@ -10,7 +10,7 @@ public class UserLoginSignupSection {
 		
 		System.out.print("\nProceed by choosing to:-\n"
 				+ "1. Log In\n"
-				+ "2. Sign Un\n"
+				+ "2. Sign Up\n"
 				+ ".. Go back");
 		
 		System.out.print("\nEnter Choice: ");
