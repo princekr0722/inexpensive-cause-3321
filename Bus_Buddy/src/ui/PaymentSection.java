@@ -158,7 +158,7 @@ public class PaymentSection {
 			return;
 		}
 		
-		while(input.length()>4 && input.length()<3 && !input.matches("\\d")) {
+		while(input.length()>4 && input.length()<3 && !input.matches("\\d+")) {
 			System.out.print(CommanAmongAll.LIGHT_ORANGE+"Please Enter Valid CVV : "+CommanAmongAll.RESET);
 			input = sc.nextLine();
 			if(input.equals("..")) {

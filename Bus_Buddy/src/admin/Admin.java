@@ -20,6 +20,10 @@ public class Admin implements Serializable{
 	
 	public static Admin admin = null;
 	
+	public Admin() {
+		asset = 100000000;
+	}
+	
 	public static void setAdmin(Admin c) throws IOException{
 		FileOutputStream file = new FileOutputStream("adminInfo.txt");
 		ObjectOutput oo = new ObjectOutputStream(file);
