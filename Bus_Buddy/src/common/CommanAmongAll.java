@@ -22,7 +22,7 @@ public class CommanAmongAll {
 	public static final String GO_BACK_TEXT = GRAY+"[Enter .. to go back]\n"+RESET;
 	
 	public static final void quit() {
-		System.out.println("\nThank you for using our services, Good Day Ahead "+CommanAmongAll.YELLOW+":)"+CommanAmongAll.RESET);
+		System.out.println("\nHave A Good Day Ahead "+CommanAmongAll.YELLOW+":)"+CommanAmongAll.RESET);
 		System.exit(1);
 	}
 	
@@ -33,4 +33,6 @@ public class CommanAmongAll {
 	public static boolean isResultSetEmpty(ResultSet rs) throws SQLException {
 		return (!rs.isBeforeFirst() && rs.getRow()==0);
 	}
+	
+	
 }

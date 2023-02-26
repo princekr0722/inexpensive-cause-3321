@@ -8,18 +8,19 @@ public class Bookings {
 	private int busID;
 	private LocalDate bookingDate;
 	private LocalDate bookedDate;
-	private int noOfPassanger;
+	private int noOfPassenger;
 	private double totalAmount;
 	private String status;
 	
 	public Bookings() {}
 	
-	public Bookings(int customerID, int busID, LocalDate bookedDate, int noOfPassanger, double totalAmount, String status) {
+	public Bookings(int customerID, int busID,LocalDate bookingDate, LocalDate bookedDate, int noOfPassenger, double totalAmount, String status) {
 		super();
 		this.customerID = customerID;
 		this.busID = busID;
+		this.bookingDate = bookingDate;
 		this.bookedDate = bookedDate;
-		this.noOfPassanger = noOfPassanger;
+		this.noOfPassenger = noOfPassenger;
 		this.totalAmount = totalAmount;
 		this.status = status;
 	}
@@ -56,12 +57,12 @@ public class Bookings {
 		this.bookedDate = bookedDate;
 	}
 
-	public int getNoOfPassanger() {
-		return noOfPassanger;
+	public int getNoOfPassenger() {
+		return noOfPassenger;
 	}
 
-	public void setNoOfPassanger(int noOfPassanger) {
-		this.noOfPassanger = noOfPassanger;
+	public void setNoOfPassenger(int noOfPassenger) {
+		this.noOfPassenger = noOfPassenger;
 	}
 
 	public double getTotalAmount() {
@@ -91,6 +92,6 @@ public class Bookings {
 	@Override
 	public String toString() {
 		return bookingID + "\t" + customerID + "\t" + busID + "\t" + bookedDate
-				+ "\t" + noOfPassanger + "\t" + totalAmount + "\t" + status;
+				+ "\t" + noOfPassenger + "\t" + totalAmount + "\t" + status;
 	}
 }

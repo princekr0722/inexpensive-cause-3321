@@ -2,16 +2,17 @@ package ui;
 
 import java.util.Scanner;
 
+import admin.Admin;
 import common.CommanAmongAll;
 
 public class AdminLogInSection {
 	
-	private static final String ADMIN_USERNAME = "Tom";
-	private static final String ADMIN_PASSWORD = "Jerry";
+	private static final String ADMIN_USERNAME = Admin.admin.getAdminName();
+	private static final String ADMIN_PASSWORD = Admin.admin.getAdminPassword();
 	
 	static void logInAsAdmin(Scanner sc) {
 		System.out.println("\n==================="+CommanAmongAll.TEAL+"ADMIN LOGIN"+CommanAmongAll.RESET+"===================");
-		System.out.println("Fill the log in details below"+CommanAmongAll.GRAY+" (Enter .. to go back)\n");
+		System.out.println("Fill the log in details below"+CommanAmongAll.GRAY+" [Enter .. to go back]\n"+CommanAmongAll.RESET);
 		
 		System.out.print("Enter Admin Name: ");
 		String adminName = sc.nextLine();
