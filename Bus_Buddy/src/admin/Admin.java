@@ -16,9 +16,13 @@ public class Admin implements Serializable{
 	
 	private final String ADMIN_NAME = "Tom";
 	private final String ADMIN_PASSWORD = "Jerry";
-	private long asset = 100000000;
+	private long asset;
 	
 	public static Admin admin = null;
+	
+	public Admin() {
+		asset = 100000000;
+	}
 	
 	public static void setAdmin(Admin c) throws IOException{
 		FileOutputStream file = new FileOutputStream("adminInfo.txt");

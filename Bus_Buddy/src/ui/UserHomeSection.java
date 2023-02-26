@@ -94,8 +94,8 @@ public class UserHomeSection {
 			userHomeSection(sc, customer);
 			return;
 		}
-		
-		System.out.println(CommanAmongAll.LIGHT_BLUE+"Select Booking By ID:-\n"+CommanAmongAll.RESET+CommanAmongAll.GO_BACK_TEXT);
+		System.out.println(CommanAmongAll.GO_BACK_TEXT);
+		System.out.println(CommanAmongAll.LIGHT_BLUE+"Select Booking By ID:-\n"+CommanAmongAll.RESET);
 		System.out.print("Enter Booking ID: ");
 		String input = sc.nextLine();
 		
