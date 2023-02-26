@@ -46,7 +46,7 @@ public class UserLoginSection {
 			
 			Customers customer = cto.getCustomerByID(customerID);
 			try {
-//				CurrentUser.currentUser = customer;
+				CurrentUser.currentUser = customer;
 				CurrentUser.setCurrentUser(customer);
 				System.out.println(CommanAmongAll.LIGHT_GREEN+"\nHi "+customer.getFirstName().substring(0, 1).toUpperCase() + customer.getFirstName().substring(1).toLowerCase()+", You Logged in Successfully "+CommanAmongAll.LIGHT_YELLOW+"^,^"+CommanAmongAll.RESET);
 				UserHomeSection.userHomeSection(sc, customer);
