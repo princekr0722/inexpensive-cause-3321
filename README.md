@@ -9,6 +9,9 @@ offers.</p>
 
 <hr></hr>
 
+![flow](https://user-images.githubusercontent.com/112754559/221497490-f005bbce-1a64-4980-a9ce-1cd39e32be83.jpg)
+
+<hr></hr>
 <b>Customers Table:</b>
 CustomerID, FirstName, LastName, DOB, City, State, Zipcode, Phone, Email, DateEntered, TotalBalance(₹)
 
