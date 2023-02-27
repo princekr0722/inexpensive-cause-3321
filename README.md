@@ -1,3 +1,5 @@
+![Bus Buddy - Logo](https://user-images.githubusercontent.com/112754559/221499553-7b477363-5ce7-4bff-8d7d-0d62bdcc2935.png)
+
 <h1>Bus Buddy</h1>
 Ride in style, book a mile </br>
 
