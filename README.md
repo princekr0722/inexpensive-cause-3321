@@ -13,8 +13,8 @@ offers.</p>
 
 <hr></hr>
 
-Admin_Username: Tom
-Admin_Password: Jerry
+<p>Admin_Username: Tom</p>
+<p>Admin_Password: Jerry</p>
 
 <hr></hr>
 <b>Customers Table:</b>
