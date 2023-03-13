@@ -80,4 +80,4 @@ bookingDate date NOT NULL,
 
 INSERT INTO Bookings (customerID , busID, bookingDate, bookedDate, noOfPassenger, totalAmount, status) Values (1, 1,”2023-02-20”, “2023-02-25”, 2, 5000, “Active”);
 
-- Github Repo Link: https://github.com/princekr0722/inexpensive-cause-3321
+-<a href="https://github.com/princekr0722/inexpensive-cause-3321"> Github Repo Link</a>
